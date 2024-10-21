@@ -47,7 +47,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // API 엔드포인트 - 모든 포스트 가져오기
-app.get("/api/posts", async (req, res) => {
+app.get("https://my-forum-blush.vercel.app/api/posts", async (req, res) => {
   try {
     const allPosts = await Post.find(); // Mongoose를 사용하여 모든 포스트 가져오기
     res.json(allPosts);
@@ -58,7 +58,7 @@ app.get("/api/posts", async (req, res) => {
 });
 
 // API 엔드포인트 - 특정 포스트 가져오기
-app.get("/api/posts/:id", async (req, res) => {
+app.get("https://my-forum-blush.vercel.app/api/posts/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).send("Post not found");
@@ -70,7 +70,7 @@ app.get("/api/posts/:id", async (req, res) => {
 });
 
 // API 엔드포인트 - 포스트 추가
-app.post('/api/posts', upload.single('file'), async (req, res) => {
+app.post('https://my-forum-blush.vercel.app/api/posts', upload.single('file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
@@ -92,7 +92,7 @@ app.post('/api/posts', upload.single('file'), async (req, res) => {
 
 
 // API 엔드포인트 - 포스트 수정
-app.put("/api/posts/:id", async (req, res) => {
+app.put("https://my-forum-blush.vercel.app/api/posts/:id", async (req, res) => {
   const postId = req.params.id;
   const { username } = req.body; // 요청 본문에서 username 가져오기
   try {
@@ -113,7 +113,7 @@ app.put("/api/posts/:id", async (req, res) => {
 });
 
 // API 엔드포인트 - 포스트 삭제
-app.delete("/api/posts/:id", async (req, res) => {
+app.delete("https://my-forum-blush.vercel.app/api/posts/:id", async (req, res) => {
   const { username } = req.body; // 요청 본문에서 username 가져오기
   const { id } = req.params;
   try {
@@ -132,7 +132,7 @@ app.delete("/api/posts/:id", async (req, res) => {
 });
 
 // 회원가입
-app.post("/api/auth/register", async (req, res) => {
+app.post("https://my-forum-blush.vercel.app/api/auth/register", async (req, res) => {
   const { username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ username, password: hashedPassword });
@@ -141,7 +141,7 @@ app.post("/api/auth/register", async (req, res) => {
 });
 
 // 로그인
-app.post("/api/auth/login", async (req, res) => {
+app.post("https://my-forum-blush.vercel.app/api/auth/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
   if (!user) return res.status(400).send("Invalid credentials");
@@ -154,13 +154,13 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 // 로그아웃 (프론트엔드에서 클라이언트 측에서 토큰 삭제)
-app.post("/api/auth/logout", (req, res) => {
+app.post("https://my-forum-blush.vercel.app/api/auth/logout", (req, res) => {
   // 클라이언트에서 JWT를 삭제하여 로그아웃을 처리합니다.
   res.send("Logged out");
 });
 
 //회원탈퇴
-app.delete("/api/auth/delete", async (req, res) => {
+app.delete("https://my-forum-blush.vercel.app/api/auth/delete", async (req, res) => {
   const { userId } = req.body; // 클라이언트에서 userId를 받아옵니다.
   try {
     // 사용자 삭제
@@ -173,7 +173,7 @@ app.delete("/api/auth/delete", async (req, res) => {
 });
 
 // 댓글 가져오기
-app.get("/api/posts/:postId/comments", async (req, res) => {
+app.get("https://my-forum-blush.vercel.app/api/posts/:postId/comments", async (req, res) => {
   try {
     const comments = await Comment.find({ postId: req.params.postId });
     res.json(comments);
@@ -184,7 +184,7 @@ app.get("/api/posts/:postId/comments", async (req, res) => {
 });
 
 // 댓글 추가하기
-app.post("/api/posts/:postId/comments", async (req, res) => {
+app.post("https://my-forum-blush.vercel.app/api/posts/:postId/comments", async (req, res) => {
   const { username, content } = req.body; // username이 빠져 있습니다.
   try {
     const newComment = new Comment({
