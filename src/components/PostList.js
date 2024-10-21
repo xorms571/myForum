@@ -93,7 +93,7 @@ const PostList = ({ posts }) => {
             key={post._id}
             onClick={() => handlePostClick(post)}
           >
-            <div className="flex flex-col gap-1 pl-4 text-xs">
+            <div className="flex flex-col gap-1 pl-4">
               <h3>
                 제목: <b>{post.title}</b>
               </h3>
