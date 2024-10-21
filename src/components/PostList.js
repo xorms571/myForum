@@ -74,7 +74,7 @@ const PostList = ({ posts }) => {
       for (const post of posts) {
         try {
           const res = await axios.get(
-            `http://localhost:5000/api/posts/${post._id}/comments`
+            `https://myforumserver-production.up.railway.app/api/posts/${post._id}/comments`
           );
           commentsCount[post._id] = res.data.length; // 댓글 개수를 저장
         } catch (error) {

@@ -19,7 +19,7 @@ const PostDetail = ({ posts }) => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
+          `https://myforumserver-production.up.railway.app/api/posts/${id}`
         );
         setPost(response.data);
         setUpdatedContent(response.data.content); // 게시물 내용을 초기화
@@ -40,7 +40,7 @@ const PostDetail = ({ posts }) => {
 
   const handleEdit = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/posts/${id}`, {
+      await axios.put(`https://myforumserver-production.up.railway.app/api/posts/${id}`, {
         title: updatedTitle, // title 추가
         content: updatedContent,
         username: user.username, // username 추가
@@ -54,7 +54,7 @@ const PostDetail = ({ posts }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+      await axios.delete(`https://myforumserver-production.up.railway.app/api/posts/${id}`, {
         // postId 대신 id 사용
         data: { username: user.username }, // 현재 사용자의 username
       });

@@ -4,7 +4,7 @@ import axios from 'axios';
 const DeleteAccount = ({ userId, setToken }) => {
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete('http://localhost:5000/api/auth/delete', {
+      await axios.delete('https://myforumserver-production.up.railway.app/auth/delete', {
         data: { userId },
       });
       alert('회원탈퇴 성공');

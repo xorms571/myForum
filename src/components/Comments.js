@@ -16,7 +16,7 @@ const Comments = ({ postId, postTitle }) => {
     const fetchComments = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/posts/${postId}/comments`
+          `https://myforumserver-production.up.railway.app/api/posts/${postId}/comments`
         );
         setComments(res.data);
       } catch (error) {
@@ -33,7 +33,7 @@ const Comments = ({ postId, postTitle }) => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/posts/${postId}/comments`,
+        `https://myforumserver-production.up.railway.app/api/posts/${postId}/comments`,
         { username: user.username, content: newComment }, // username 추가
         {
           headers: {

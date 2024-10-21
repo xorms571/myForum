@@ -13,7 +13,7 @@ import Header from "./components/Header";
 const App = () => {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:5000/api/posts");
+    const response = await axios.get("https://myforumserver-production.up.railway.app/api/posts");
     setPosts(response.data);
   };
 

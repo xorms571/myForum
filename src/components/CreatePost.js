@@ -35,7 +35,7 @@ const CreatePost = () => {
     formData.append('username', username);
   
     try {
-      const response = await axios.post('http://localhost:5000/api/posts', formData, {
+      const response = await axios.post('https://myforumserver-production.up.railway.app/api/posts', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log('Post created:', response.data);
