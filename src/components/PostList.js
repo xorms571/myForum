@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 임포트
 import Pagination from "./Pagination";
 import { useAuth } from "../AuthContext";
-import axios from "axios";
 
 const PostList = ({ posts }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용
@@ -11,7 +10,6 @@ const PostList = ({ posts }) => {
   const [search, setSearch] = useState(""); // 입력한 검색어
   const [filteredPosts, setFilteredPosts] = useState(posts); // 필터된 게시물 상태
   const { isAuthenticated } = useAuth();
-  const [commentsData, setCommentsData] = useState({}); // 각 포스트의 댓글 개수 저장
   // posts가 변경될 때마다 필터된 게시물을 초기화
   useEffect(() => {
     setFilteredPosts(posts);
@@ -67,29 +65,6 @@ const PostList = ({ posts }) => {
     }
   };
 
-  // 포스트별 댓글 개수를 가져오는 함수
-  useEffect(() => {
-    const fetchComments = async () => {
-      const commentsCount = {};
-      for (const post of posts) {
-        try {
-          const res = await axios.get(
-            `https://myforumserver-production.up.railway.app/api/posts/${post._id}/comments`
-          );
-          commentsCount[post._id] = res.data.length; // 댓글 개수를 저장
-        } catch (error) {
-          console.error(
-            `Failed to fetch comments for post ${post._id}:`,
-            error
-          );
-          commentsCount[post._id] = "불러오기 실패";
-        }
-      }
-      setCommentsData(commentsCount);
-    };
-    fetchComments();
-  }, [posts]);
-
   return (
     <div className="w-full flex flex-col justify-between h-full">
       <ul className="flex flex-col gap-4">
@@ -124,14 +99,6 @@ const PostList = ({ posts }) => {
               </h3>
               <p>
                 작성자: <b>{post.username}</b>
-              </p>
-              <p>
-                댓글:{" "}
-                <b>
-                  {commentsData[post._id] === undefined
-                    ? "불러오는 중.."
-                    : commentsData[post._id] + "개"}
-                </b>
               </p>
               <p>{new Date(post.createdAt).toLocaleString()}</p>
             </div>
