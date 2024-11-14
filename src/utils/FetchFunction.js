@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useState } from "react";
+
 export const useFetch = () => {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
