@@ -7,6 +7,7 @@ export const useCreate = () => {
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useAuth();
+  const { fetchPosts } = useFetch();
   const navigate = useNavigate();
   const username = user.username;
 
@@ -26,7 +27,6 @@ export const useCreate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { fetchPosts } = useFetch();
     const formData = new FormData();
     if (file) {
       formData.append("file", file);
