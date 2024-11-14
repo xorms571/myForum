@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "./FetchFunction";
 
 export const useCreate = () => {
   const [title, setTitle] = useState("");
@@ -11,7 +10,6 @@ export const useCreate = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const username = user.username;
-  const { fetchPosts } = useFetch();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -47,7 +45,6 @@ export const useCreate = () => {
       );
       console.log("Post created:", response.data);
       alert("게시물을 작성하였습니다.");
-      fetchPosts()
       navigate("/");
     } catch (error) {
       console.error("Error creating post:", error);

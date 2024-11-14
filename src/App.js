@@ -20,7 +20,7 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<PostList posts={posts} />} />
+          <Route path="/" element={<PostList posts={posts} fetchPosts={fetchPosts} />} />
           <Route
             path="/create"
             element={<CreatePost fetchPosts={fetchPosts} />}

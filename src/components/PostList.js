@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"; // useNavigate 훅 임포트
 import Pagination from "./Pagination";
 import { useAuth } from "../utils/AuthContext";
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, fetchPosts }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [postsPerPage, setPostsPerPage] = useState(3); // 페이지당 보여줄 게시물 수
@@ -64,6 +64,11 @@ const PostList = ({ posts }) => {
       navigate("/login");
     }
   };
+
+  
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div className="w-full flex flex-col justify-between h-full">
