@@ -2,6 +2,20 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+export const useFetch = () => {
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    const response = await axios.get(
+      "https://myforumserver-production.up.railway.app/api/posts"
+    );
+    setPosts(response.data);
+  };
+  return {
+    posts,
+    fetchPosts,
+  };
+};
+
 export const useCreate = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -64,18 +78,5 @@ export const useCreate = () => {
     setContent,
     handleFileChange,
     handleSubmit,
-  };
-};
-export const useFetch = () => {
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const response = await axios.get(
-      "https://myforumserver-production.up.railway.app/api/posts"
-    );
-    setPosts(response.data);
-  };
-  return {
-    posts,
-    fetchPosts,
   };
 };
