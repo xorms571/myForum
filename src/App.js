@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PostList from "./components/PostList";
 import CreatePost from "./components/CreatePost";
@@ -9,14 +8,10 @@ import Login from "./components/Login";
 import DeleteAccount from "./components/DeleteAccount";
 import { AuthProvider } from "./AuthContext";
 import Header from "./components/Header";
+import { useFetch } from "./utils/functions";
 
 const App = () => {
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const response = await axios.get("https://myforumserver-production.up.railway.app/api/posts");
-    setPosts(response.data);
-  };
-
+  const { fetchPosts, posts } = useFetch();
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -26,7 +21,10 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<PostList posts={posts} />} />
-          <Route path="/create" element={<CreatePost />} />
+          <Route
+            path="/create"
+            element={<CreatePost fetchPosts={fetchPosts} />}
+          />
           <Route path="/posts/:id" element={<PostDetail posts={posts} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

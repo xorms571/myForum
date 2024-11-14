@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 export const useCreate = () => {
   const [title, setTitle] = useState("");
@@ -26,6 +26,7 @@ export const useCreate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const { fetchPosts } = useFetch();
     const formData = new FormData();
     if (file) {
       formData.append("file", file);
@@ -44,6 +45,7 @@ export const useCreate = () => {
       );
       console.log("Post created:", response.data);
       alert("게시물을 작성하였습니다.");
+      fetchPosts()
       navigate("/");
     } catch (error) {
       console.error("Error creating post:", error);
@@ -62,5 +64,18 @@ export const useCreate = () => {
     setContent,
     handleFileChange,
     handleSubmit,
+  };
+};
+export const useFetch = () => {
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    const response = await axios.get(
+      "https://myforumserver-production.up.railway.app/api/posts"
+    );
+    setPosts(response.data);
+  };
+  return {
+    posts,
+    fetchPosts,
   };
 };

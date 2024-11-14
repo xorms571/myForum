@@ -1,4 +1,4 @@
-import { useCreate } from "../functions/createFuntions";
+import { useCreate } from "../functions";
 import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
