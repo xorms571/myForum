@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 임포트
 import Pagination from "./Pagination";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../utils/AuthContext";
 
 const PostList = ({ posts }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용

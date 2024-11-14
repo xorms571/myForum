@@ -1,7 +1,7 @@
 // Comments.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../AuthContext";
+import { useAuth } from "../utils/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Comments = ({ postId, postTitle }) => {

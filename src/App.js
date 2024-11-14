@@ -6,7 +6,7 @@ import PostDetail from "./components/PostDetail";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import DeleteAccount from "./components/DeleteAccount";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./utils/AuthContext";
 import Header from "./components/Header";
 import { useFetch } from "./utils/functions";
 
