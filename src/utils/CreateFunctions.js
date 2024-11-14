@@ -2,28 +2,16 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
-export const useFetch = () => {
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    const response = await axios.get(
-      "https://myforumserver-production.up.railway.app/api/posts"
-    );
-    setPosts(response.data);
-  };
-  return {
-    posts,
-    fetchPosts,
-  };
-};
+import { useFetch } from "./FetchFunction";
 
 export const useCreate = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useAuth();
-  const { fetchPosts } = useFetch();
   const navigate = useNavigate();
   const username = user.username;
+  const { fetchPosts } = useFetch();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];

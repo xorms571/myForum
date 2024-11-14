@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import DeleteAccount from "./components/DeleteAccount";
 import { AuthProvider } from "./utils/AuthContext";
 import Header from "./components/Header";
-import { useFetch } from "./utils/functions";
+import { useFetch } from "./utils/FetchFunction";
 
 const App = () => {
   const { fetchPosts, posts } = useFetch();
