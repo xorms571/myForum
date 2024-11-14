@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
 button {
   margin-left: 10px;
   padding: 3px 15px;
