@@ -1,5 +1,5 @@
-import { useCreate } from "../functions";
 import { useNavigate } from "react-router-dom";
+import { useCreate } from "../utils/functions";
 
 const CreatePost = () => {
   const navigate = useNavigate();
