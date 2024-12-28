@@ -64,7 +64,6 @@ const PostList = ({ posts, fetchPosts }) => {
       navigate("/login");
     }
   };
-
   
   useEffect(() => {
     fetchPosts();

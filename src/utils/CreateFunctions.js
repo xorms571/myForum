@@ -37,7 +37,7 @@ export const useCreate = () => {
 
     try {
       const response = await axios.post(
-        "https://myforumserver-production.up.railway.app/api/posts",
+        "https://render.com/docs/web-services#port-binding",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
