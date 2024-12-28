@@ -10,7 +10,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://myforumserver-production.up.railway.app/api/auth/register", {
+      await axios.post("https://myforumserver.onrender.com/api/auth/register", {
         username,
         password,
       });

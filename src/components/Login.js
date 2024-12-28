@@ -15,7 +15,7 @@ const Login = () => {
     setError("");
     try {
       const response = await axios.post(
-        "https://myforumserver-production.up.railway.app/api/auth/login",
+        "https://myforumserver.onrender.com/api/auth/login",
         {
           username,
           password,
