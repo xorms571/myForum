@@ -5,7 +5,7 @@ export const useFetch = () => {
   const [posts, setPosts] = useState([]);
   const fetchPosts = async () => {
     const response = await axios.get(
-      "https://myforumserver-production.up.railway.app/api/posts"
+      "https://render.com/docs/web-services#port-binding/api/posts"
     );
     setPosts(response.data);
   };
